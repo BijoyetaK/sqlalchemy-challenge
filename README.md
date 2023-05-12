@@ -4,16 +4,16 @@
 ### This assignment involved creation of Flask API after doing some basic analysis on climate data of Hawaii using Python an SQLALchemy. 
 
 ### Analyze and Explore Climate Data
-    - Using SQLALCHEMY ORM queries, Pandas and Matplotlib to do climate analysis.
-    - Database used is hawaii.sqlite
-    - Tables inspected creating engine connection to hawaii.sqlite - measurement and station.
-    - Measurement table provided: ID, Station name, date, precipitation and temperature data
-    - Station table provided: ID, Station name, latitude, longitude, elevation
-    - Using automap_base function to declare a Base class.
-    - Use that Base class to reflect the tables using autoload_with=engine.
-    - using keys() function to view all the classes that automapping process found.
-    - Saving the references to each table into Measurement and Station class respectively. 
-    - Creating session (link) from Python to sqlite DB using Session(engine)
+   - Using SQLALCHEMY ORM queries, Pandas and Matplotlib to do climate analysis.
+   - Database used is hawaii.sqlite
+   - Tables inspected creating engine connection to hawaii.sqlite - measurement and station.
+   - Measurement table provided: ID, Station name, date, precipitation and temperature data
+   - Station table provided: ID, Station name, latitude, longitude, elevation
+   - Using automap_base function to declare a Base class.
+   - Use that Base class to reflect the tables using autoload_with=engine.
+   - using keys() function to view all the classes that automapping process found.
+   - Saving the references to each table into Measurement and Station class respectively. 
+   - Creating session (link) from Python to sqlite DB using Session(engine)
     
 
 ### Exploratory Precipitation Analysis
@@ -58,19 +58,37 @@
 
   
    
-### Designing Climate App
-    
-#### Available routes 
-    
-    
+### Designing Climate App(Flask API) based on the above precipitation, station and temperature analysis results
+
+   - Two python applications:
+        - appdata.py -> Python application that has all the individual functions inside the Weatherdata class.
+                        Each function queries the DB to fetch required data, save them into pandas dataframe and converting into json.
+                        Also contains the DataValidation class to do user input start/end dates. 
+        - app.py -> Flask API that references the Weatherdata and DataValidation class and  from appdata.py to build create required routes. 
+                    The routes are displayed to the user in a html table format using render_template function from flask module.
+   - Available routes created for: 
+        - Welcome page/homepage
+        - Precipitation in the last 12 months
+        - List of all Hawaii stations
+        - Temperature observations of the most active station
+        - Min, Avg and Max temperature for a specified start date onwards
+        - Min, Avg and Max temperature from specified start date to end date inclusive,
+          user input start date and end date must be in format YYYYMMDD and end date must be greater than start date.
+        ![image](https://github.com/BijoyetaK/sqlalchemy-challenge/assets/126313924/94c16cc4-dbdd-470c-8a40-69a45d02c2ec)
+
+
 
 #### references: 
      
-     - https://www.quackit.com/html/html_table_generator.cfm
+   - https://www.quackit.com/html/html_table_generator.cfm
                  
-     - https://bobbyhadz.com/blog/python-add-months-to-date#:~:text=Use%20the%20relativedelta%20class%20from,with%20different%20numbers%20of%20days.
+   - https://bobbyhadz.com/blog/python-add-months-to-date#:~:text=Use%20the%20relativedelta%20class%20from,with%20different%20numbers%20of%20days.
      
-     - https://dataplotplus.com/change-frequency-date-x-axis-matplotlib-python/
+   - https://dataplotplus.com/change-frequency-date-x-axis-matplotlib-python/
+   
+   - https://pythonbasics.org/flask-rest-api/
+
+
      
      
                  
